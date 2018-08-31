@@ -1,8 +1,8 @@
 
 class _Node {
   constructor(data,next){
-    this.data;
-    this.next;
+    this.data =data;
+    this.next= next;
   }
 }
 
@@ -25,4 +25,6 @@ class Stack {
     return node.data;
   }
 }
+
+module.exports = Stack;
 
