@@ -1,7 +1,9 @@
 
 
 const Stack = require('./stack-class');
-const { display, peek } = require('./helper');
+const Queue = require('./queue-class');
+const { displayStack, peekStack } = require('./stack-helper');
+const { displayQueue, peekQueue } = require('./queue-helper');
 
 
 function is_palindrome(s) {
@@ -11,7 +13,7 @@ function is_palindrome(s) {
   for(let i = 0; i < s.length; i++){
     stack.push(s[i]);
   }
-  //console.log(display(stack));
+  //console.log(displayStack(stack));
 
   let reversed = '';
   for(let i = 0; i < s.length; i++){
@@ -75,14 +77,14 @@ function parens(s){
       stack.push(var1);
     }
     else if( var1 ===')'){
-      const candidate = peek(stack);
+      const candidate = peekStack(stack);
       if(!candidate){
         return false;
       }
       stack.pop();
     }
   }
-  if(peek(stack)){
+  if(peekStack(stack)){
     return false;
   }
   return true;
@@ -91,8 +93,8 @@ function parens(s){
 function sortStack(origStack){
   let returnStack = new Stack();
   let tempStack = new Stack();
-  // let peekO = origStack.peek();
-  // let peekR = returnStack.peek();
+  // let peekO = origStack.peekStack();
+  // let peekR = returnStack.peekStack();
   let currNode = origStack.top;
   let tempNode = origStack.top;
   while(currNode){
@@ -118,6 +120,38 @@ function sortStack(origStack){
   return returnStack;
   
 }
+
+function queueDancers(queuePeople){
+  let queueM = new Queue();
+  let queueF = new Queue();
+  let pairQueue = new Queue();
+  let currNode = queuePeople.first;
+  //start at the front of the queue with .first and move to
+  //the back of the queue
+  while(currNode){
+    // console.log(currNode.value);
+    if(currNode.value.gender === 'F'){
+      queueF.enqueue(currNode.value);
+    }
+    else {
+      queueM.enqueue(currNode.value);
+    }
+    currNode = currNode.prev;
+  } 
+  while(peekQueue(queueM) && peekQueue(queueF)){
+    let dQM = queueM.dequeue();
+    let dQF = queueF.dequeue();
+    console.log(dQM, '----------', dQF);
+    pairQueue.enqueue([dQM, dQF]);
+    console.log(displayQueue(pairQueue));
+  }
+  if(peekQueue(pairQueue) === null){
+    return 'No people';
+  }
+  return pairQueue;
+  // console.log(displayQueue(queueM), '-------------------------------', 
+  //   displayQueue(queueF)); //good check
+}
 // const arr = [12, 4, 2];
 // console.log(arr.sort((function(a, b) {
 //   return a - b;
@@ -125,12 +159,24 @@ function sortStack(origStack){
 // ));
 function main(){
   const stack1 = new Stack();
-  stack1.push(10);
-  stack1.push(7);
-  stack1.push(1);
-  stack1.push(3);
-  console.log(display(stack1));
-  console.log(display(sortStack(stack1)));
+  const queuePeople = new Queue();
+  queuePeople.enqueue({name: 'Jane', gender: 'F'});
+  queuePeople.enqueue({name: 'Frank', gender: 'M'});
+  queuePeople.enqueue({name: 'John', gender: 'M'});
+  queuePeople.enqueue({name: 'Sherlock', gender: 'M'});
+  queuePeople.enqueue({name: 'Madonna', gender: 'F'});
+  queuePeople.enqueue({name: 'David', gender: 'M'});
+  queuePeople.enqueue({name: 'Christopher', gender: 'M'});
+  queuePeople.enqueue({name: 'Beyonce', gender: 'F'});
+  queuePeople.enqueue({name: 'Emma', gender: 'F'});
+  // console.log(displayQueue(queuePeople));
+  displayQueue(queueDancers(queuePeople));
+  // stack1.push(10);
+  // stack1.push(7);
+  // stack1.push(1);
+  // stack1.push(3);
+  // console.log(displayStack(stack1));
+  // console.log(displayStack(sortStack(stack1)));
 }
 
 main();

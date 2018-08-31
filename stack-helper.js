@@ -1,6 +1,6 @@
 
 
-const peek = stack => {
+const peekStack = stack => {
   // return stack.top.data;
   var node = stack.top;
   if(node){
@@ -11,7 +11,7 @@ const peek = stack => {
   }
 };
 
-const display = stack => {
+const displayStack = stack => {
   // return stack.top;
   const stackDisplay = {};
   let currNode = stack.top;
@@ -29,6 +29,6 @@ const display = stack => {
 };
 
 module.exports = {
-  peek,
-  display
+  peekStack,
+  displayStack
 };

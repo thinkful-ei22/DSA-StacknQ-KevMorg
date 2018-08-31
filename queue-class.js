@@ -26,14 +26,21 @@ class Queue {
     this.last = node;
   }
   dequeue(){
+    // console.log('i was called');
     if(this.first === null){
+      // console.log('i was called 2');
       return;
     }
     const node = this.first;
     this.first = node.prev;
+    if(this.first){
+      this.first.next = null;
+    }
+    // console.log('i was called 3', node);
     //updating the q. the first/head/top is now the node and
     //the first is the previous one behind the top/head
     if(node === this.last){
+      
       this.last = null;
       //if there is only one item, then u set this.last equal to null
       //afterwards
@@ -41,3 +48,5 @@ class Queue {
     return node.value;
   }
 }
+
+module.exports = Queue;
