@@ -1,3 +1,5 @@
+'use strict';
+
 const peek = stack => {
   return stack.top.data;
 };
