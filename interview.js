@@ -141,9 +141,9 @@ function queueDancers(queuePeople){
   while(peekQueue(queueM) && peekQueue(queueF)){
     let dQM = queueM.dequeue();
     let dQF = queueF.dequeue();
-    console.log(dQM, '----------', dQF);
+    // console.log(dQM, '----------', dQF);
     pairQueue.enqueue([dQM, dQF]);
-    console.log(displayQueue(pairQueue));
+    // console.log(displayQueue(pairQueue));
   }
   if(peekQueue(pairQueue) === null){
     return 'No people';
@@ -170,7 +170,14 @@ function main(){
   queuePeople.enqueue({name: 'Beyonce', gender: 'F'});
   queuePeople.enqueue({name: 'Emma', gender: 'F'});
   // console.log(displayQueue(queuePeople));
-  displayQueue(queueDancers(queuePeople));
+  console.log(
+    JSON.stringify(
+      displayQueue(
+        queueDancers(
+          queuePeople)
+      )
+      , null, 2)
+  );
   // stack1.push(10);
   // stack1.push(7);
   // stack1.push(1);

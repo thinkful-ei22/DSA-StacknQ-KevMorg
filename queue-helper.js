@@ -20,8 +20,9 @@ const displayQueue= queue => {
     // add node to list obj
     queueDisplay[`node${position}`] = 
     { data: currNode.value, 
-      prev: currNode.prev ? currNode.prev.value : null,
-      next: currNode.next ? currNode.next.value: null };
+      // prev: currNode.prev ? currNode.prev.value : null,
+      // next: currNode.next ? currNode.next.value: null 
+    };
     // move to the next node
     currNode = currNode.prev;
     position++;
