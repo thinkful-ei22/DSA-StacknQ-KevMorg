@@ -1,7 +1,14 @@
-'use strict';
+
 
 const peek = stack => {
-  return stack.top.data;
+  // return stack.top.data;
+  var node = stack.top;
+  if(node){
+    return node.data;
+  }
+  else {
+    return false;
+  }
 };
 
 const display = stack => {
