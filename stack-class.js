@@ -10,7 +10,7 @@ class Stack {
   constructor(){
     this.top = null;
   }
-  push(data){
+  push(data){//returns top node
     if(this.top === null){
       this.top = new _Node(data, null);
       return this.top;
@@ -18,7 +18,7 @@ class Stack {
     const node = new _Node(data, this.top);
     this.top = node;
   }
-  pop(){
+  pop(){//returns data
     const node = this.top;
     this.top = node.next ? node.next : null;
     //new top

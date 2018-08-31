@@ -19,7 +19,7 @@ const display = stack => {
   while (currNode) {
     // add node to list obj
     stackDisplay[`node${position}`] = 
-    { value: currNode.data, next: currNode.next ? currNode.next.data: null };
+    { data: currNode.data, next: currNode.next ? currNode.next.data: null };
     // move to the next node
     currNode = currNode.next;
     position++;

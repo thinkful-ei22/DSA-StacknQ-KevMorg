@@ -87,7 +87,50 @@ function parens(s){
   }
   return true;
 }
+// console.log(parens('( ( 3 + 1) + ( 2 * 4) )/1'));
+function sortStack(origStack){
+  let returnStack = new Stack();
+  let tempStack = new Stack();
+  // let peekO = origStack.peek();
+  // let peekR = returnStack.peek();
+  let currNode = origStack.top;
+  let tempNode = origStack.top;
+  while(currNode){
+    if((origStack.top) && 
+    (currNode.data <= currNode.next.data)){
+      tempNode = origStack.top.data;
+      console.log(currNode.data, currNode.next.data, 'less than below');
+      tempStack.push(origStack.pop());
+      returnStack.push(origStack.pop());
+      returnStack.push(tempStack.pop());
+    }
+    else if((currNode.top) && 
+    (currNode.top.data > currNode.top.next.data)){
+      tempNode = origStack.top.data;
+      const one = returnStack.push(origStack.pop());
+      console.log(one);
+      const one1 = returnStack.push(origStack.pop());
+      console.log(one1);
+    }
+    currNode = currNode.next;
+   
+  }
+  return returnStack;
+  
+}
+// const arr = [12, 4, 2];
+// console.log(arr.sort((function(a, b) {
+//   return a - b;
+// })
+// ));
+function main(){
+  const stack1 = new Stack();
+  stack1.push(10);
+  stack1.push(7);
+  stack1.push(1);
+  stack1.push(3);
+  console.log(display(stack1));
+  console.log(display(sortStack(stack1)));
+}
 
-
-
-console.log(parens('( ( 3 + 1) + ( 2 * 4) )/1'));
+main();
